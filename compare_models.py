@@ -77,3 +77,5 @@ elif nb_accuracy > logistic_accuracy:
 else:
 
     print("\nBoth models performed equally")
+    
+#Logistic Regression achieved better performance on phishing classification tasks
