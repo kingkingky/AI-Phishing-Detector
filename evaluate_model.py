@@ -9,7 +9,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 
 # load dataset
-data = pd.read_csv(r"C:\Users\kankrit\Desktop\Projects\phishing-detector\env\dataset\messages.csv")
+data = pd.read_csv(r"C:\Users\kankrit\OneDrive\Desktop\Projects\phishing-detector\dataset\messages.csv")
 
 X = data["text"]
 Y = data["label"]

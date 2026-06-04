@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <title>AI Phishing Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <h1>🛡️ AI Phishing Detector</h1>
+        
+        <form method="POST">
+            <input type="text" 
+                   name="message" 
+                   placeholder="Enter suspicious message or URL..." 
+                   required 
+                   autocomplete="off">
+            <button type="submit">🔍 Scan Threat</button>
+        </form>
+        
+        {% if result %}
+        <div class="result-box {% if risk_level == 'HIGH RISK' %}high-risk{% elif risk_level == 'MEDIUM RISK' %}medium-risk{% else %}low-risk{% endif %}">
+            <h2>{{ result }}</h2>
+            
+            <h3>Confidence: {{ confidence }}%</h3>
+            <h3>Risk Score: {{ risk_score }}/100</h3>
+            <div class="risk-bar">
+                <div class="risk-fill {% if confidence > 70 %}high{% elif confidence > 40 %}medium{% else %}low{% endif %}" 
+                     style="width: {{ confidence }}%;">
+                    {{ confidence }}%
+                </div>
+            </div>
+            
+            <h3>Risk Level: 
+                <span class="risk-badge {{ risk_level|replace(' ', '-')|lower }}">
+                    {{ risk_level }}
+                </span>
+            </h3>
+            
+            {% if reasons %}
+            <h3>⚠️ Detection Reasons:</h3>
+            <ul class="reasons-list">
+                {% for reason in reasons %}
+                <li>{{ reason }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            
+            {% if url_report %}
+            <h3>🔎 URL Analysis:</h3>
+            <ul class="reasons-list">
+                {% for item in url_report %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        <br>
+        <a href="/dashboard" class="dashboard-link">
+            <button type="button">📊 Open Dashboard</button>
+        </a>
+    </div>
+</body>
+</html>

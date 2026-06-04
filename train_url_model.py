@@ -49,7 +49,7 @@ def extract_url_features(url):
     return features
 
 #Load data
-data = pd.read_csv(r"C:\Users\kankrit\Desktop\Projects\phishing-detector\env\dataset\urls.csv")
+data = pd.read_csv(r"C:\Users\kankrit\OneDrive\Desktop\Projects\phishing-detector\dataset\urls.csv")
 
 X = data["url"]
 y = data["label"]
